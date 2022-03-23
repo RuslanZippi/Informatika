@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.7.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.5.1/dist/tfjs-vis.umd.min.js"></script>
+</head>
+
+<body>
+<!-- Определяет контейнер с кнопками предсказания и стирания, а также холст для рисования цифры -->
+<div id="container">
+    <h1>Draw a number</h1>
+    <p id="result">Prediction</p>
+    <div>
+        <!-- Эта кнопка даёт команду модели вернуть ответ для текущего рисунка на холсте -->
+
+        <button
+                type="button"
+                class="btn btn-primary btn-block"
+                onclick="predictModel()"
+        >
+            Predict
+
+        </button>
+        <!-- Эта кнопка очищает холст, чтобы мы могли нарисовать новую цифру -->
+
+        <button
+                type="button"
+                class="btn btn-secondary btn-block"
+                onclick="erase()"
+        >
+            Clear
+
+        </button>
+    </div> <!-- Это определяет холст, на котором мы можем нарисовать цифру-->
+    <!-- Также здесь мы можем регулировать размер холста-->
+
+    <canvas
+            id="canvas"
+            width="500px"
+            height="500px"
+            class="canvas"
+            style="border: 1px solid #b9bfc9; margin-top: 25px"
+    ></canvas>
+
+</div>
+
+
+<script th:src="@{js/script.js}"></script>
+
+</body>
+</html>
