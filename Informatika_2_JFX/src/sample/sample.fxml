@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <GridPane alignment="center" hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" vgap="10" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <columnConstraints>
@@ -30,25 +31,27 @@
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
       <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
       <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
       <RowConstraints />
       <RowConstraints />
    </rowConstraints>
    <children>
-      <ComboBox id="listInValue" fx:id="boxIn" maxWidth="-Infinity" onAction="#selectedInValue" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-      <ComboBox id="listOutValue" fx:id="boxOut" maxWidth="-Infinity" onAction="#selectedOutValue" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
-      <Button id="convertButton" fx:id="button" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#buttonClick" prefHeight="30.0" prefWidth="200.0" text="Конвертировать" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="3" />
-      <TextArea id="textOut" fx:id="textOut" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="7" GridPane.rowIndex="3">
+      <ComboBox id="listInValue" fx:id="boxIn" maxWidth="-Infinity" onAction="#selectedInValue" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+      <ComboBox id="listOutValue" fx:id="boxOut" maxWidth="-Infinity" onAction="#selectedOutValue" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+      <Button id="convertButton" fx:id="button" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#buttonClick" prefHeight="30.0" prefWidth="200.0" text="Конвертировать" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+      <TextArea id="textOut" fx:id="textOut" editable="false" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="7" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets />
          </GridPane.margin></TextArea>
-      <TextArea id="textTenInValue" fx:id="textPatternIn" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="250.0" wrapText="true" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.rowSpan="2147483647">
+      <TextArea id="textTenInValue" fx:id="textPatternIn" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="250.0" wrapText="true" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="7" GridPane.rowSpan="2147483647">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></TextArea>
-      <TextArea fx:id="textIn" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#buttonClickCheck" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-      <TextArea id="textTenOutValue" fx:id="textPatternOut" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="250.0" wrapText="true" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.rowSpan="2147483647">
+      <TextArea fx:id="textIn" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#buttonClickCheck" prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+      <TextArea id="textTenOutValue" fx:id="textPatternOut" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="250.0" wrapText="true" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="7" GridPane.rowSpan="2147483647">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font></TextArea>
@@ -57,5 +60,15 @@
             <Font name="Caladea" size="12.0" />
          </font>
       </CheckBox>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Количество символов не должно превышать 18" textAlignment="CENTER" wrappingWidth="150.17724609375" GridPane.columnIndex="3" GridPane.rowIndex="2">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Точность дробных чисел 10 знаков " textAlignment="CENTER" wrappingWidth="150.3056640625" GridPane.columnIndex="7" GridPane.rowIndex="2">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
    </children>
 </GridPane>

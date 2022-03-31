@@ -2,14 +2,20 @@ package sample;
 
 import com.sun.org.omg.CORBA.Initializer;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
+
 
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static javafx.scene.input.KeyEvent.KEY_PRESSED;
 
 
 public class Controller implements Initializable {
@@ -73,26 +79,77 @@ public class Controller implements Initializable {
 
     public void buttonClick() {
         convertValue();
-        textOut.setText(String.valueOf(convert(textIn.getText())));
+        if (convert()) {
+            textOut.setText(Long.toUnsignedString(Long.parseLong(textIn.getText(), getSystem(boxIn)), getSystem(boxOut)));
+        }
     }
 
     public void buttonClickCheck() {
         if (checkBox.isSelected()) {
-            textOut.setText(String.valueOf(convert(textIn.getText())));
+            textOut.setText(Long.toUnsignedString(Long.parseLong(textIn.getText(), getSystem(boxIn)), getSystem(boxOut)));
         }
+
     }
 
-    private int convert(String s) {
-        Pattern p = Pattern.compile("\\D");
+    public boolean convert() {
+        Pattern p;
+        switch (getSystem(boxIn)){
+            case 2:
+                p = Pattern.compile("[^01]");
+                break;
+            case 3:
+                p = Pattern.compile("[^012]");
+                break;
+            case 4:
+                p = Pattern.compile("[^0123]");
+                break;
+            case 5:
+                p = Pattern.compile("[^01234]");
+                break;
+            case 6:
+                p = Pattern.compile("[^012345]");
+                break;
+            case 7:
+                p = Pattern.compile("[^0123456]");
+                break;
+            case 8:
+                p = Pattern.compile("[^01234567]");
+                break;
+            case 9:
+                p = Pattern.compile("[^012345678]");
+                break;
+            case 10:
+                p = Pattern.compile("[^0123456789]");
+                break;
+            case 11:
+                p = Pattern.compile("[^0123456789aA]");
+                break;
+            case 12:
+                p = Pattern.compile("[^0123456789aAbB]");
+                break;
+            case 13:
+                p = Pattern.compile("[^0123456789aAbBcC]");
+                break;
+            case 14:
+                p = Pattern.compile("[^0123456789aAbBcCdD]");
+                break;
+            case 15:
+                p = Pattern.compile("[^0123456789aAbBcCdDeE]");
+                break;
+            case 16:
+                p = Pattern.compile("[^0123456789aAbBcCdDeEfF]");
+                break;
+            default:
+                p = Pattern.compile("");
 
-        int x;
-        System.out.println(checkTwoSystem(s));
-        if (s.equals("") || p.matcher(s).find()) {
-            x = 0;
-        } else {
-            x = Integer.parseInt(s);
         }
-        return x * 2;
+        if (p.matcher(textIn.getText()).find()){
+            getAlert();
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
     private boolean checkTwoSystem(String s) {
@@ -179,7 +236,7 @@ public class Controller implements Initializable {
 
     private String fillPatternIn(int outSystem) {
         String text = "";
-        text = "Таблица конвертации из 10-системы в 2-систему:\n" +
+        text = "Таблица конвертации из 10-системы в " + outSystem + "-систему:\n" +
                 "1 = " + Integer.toUnsignedString(1, outSystem) + "\t\t\t 9 = " + Integer.toUnsignedString(9, outSystem) + "\n" +
                 "2 = " + Integer.toUnsignedString(2, outSystem) + "\t\t\t 10 = " + Integer.toUnsignedString(10, outSystem) + "\n" +
                 "3 = " + Integer.toUnsignedString(3, outSystem) + "\t\t\t 11 = " + Integer.toUnsignedString(11, outSystem) + "\n" +
@@ -206,11 +263,13 @@ public class Controller implements Initializable {
     }
 
     private void convertValue() {
-        Integer x = 1;
-        System.out.println(Integer.parseInt("E", 15));
+        BigDecimal bigDecimal = new BigDecimal(Long.parseLong("4324D344", 15));
+        System.out.println(bigDecimal);
+        System.out.println(Long.parseLong("4324D344", 15));
         System.out.println(Integer.toUnsignedString(12, 13));
     }
-    private int getSystem(ComboBox comboBox){
+
+    private int getSystem(ComboBox comboBox) {
         switch (comboBox.getSelectionModel().getSelectedItem().toString()) {
             case "2-система":
                 return 2;
@@ -249,10 +308,11 @@ public class Controller implements Initializable {
 
     public void selectedInValue() {
         textPatternIn.setText(fillPatternIn(getSystem(boxIn)));
-        textPatternOut.setText(fillPatternOut(getSystem(boxIn),getSystem(boxOut)));
+        textPatternOut.setText(fillPatternOut(getSystem(boxIn), getSystem(boxOut)));
     }
-    public void selectedOutValue(){
+
+    public void selectedOutValue() {
         textPatternIn.setText(fillPatternIn(getSystem(boxIn)));
-        textPatternOut.setText(fillPatternOut(getSystem(boxIn),getSystem(boxOut)));
+        textPatternOut.setText(fillPatternOut(getSystem(boxIn), getSystem(boxOut)));
     }
 }

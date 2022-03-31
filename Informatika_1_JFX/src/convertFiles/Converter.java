@@ -6,9 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Converter {
-//    private ArrayList<String> list = new ArrayList<>();
-//    private ArrayList<List<String>> lists = new ArrayList<>();
-//    private boolean checker = false;
     private String doneText;
 
     private static List<String> splitLine(String line) {
