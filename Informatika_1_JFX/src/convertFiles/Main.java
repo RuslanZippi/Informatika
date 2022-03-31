@@ -14,7 +14,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    private Desktop desktop = Desktop.getDesktop();
     private boolean checker = false;
 
     @Override
