@@ -78,22 +78,130 @@ public class Controller implements Initializable {
     }
 
     public void buttonClick() {
-        convertValue();
         if (convert()) {
-            textOut.setText(Long.toUnsignedString(Long.parseLong(textIn.getText(), getSystem(boxIn)), getSystem(boxOut)));
+            if (textIn.getText().contains(",") ||textIn.getText().contains(".") ) {
+                textOut.setText(convertDouble());
+            } else {
+                textOut.setText(Long.toUnsignedString(Long.parseLong(textIn.getText(), getSystem(boxIn)), getSystem(boxOut)));
+            }
         }
+    }
+
+    private String convertDouble() {
+        StringBuilder firstPath = new StringBuilder();
+        StringBuilder lastPath = new StringBuilder();
+        int radix = getSystem(boxOut);
+        long value;
+        String s = textIn.getText();
+        String splitS = "";
+        if (s.contains(".")){
+            splitS = "\\.";
+        }
+        else {
+            splitS = ",";
+        }
+        s = s.split(splitS)[1];
+        for (int x = 0; x < 10; x++) {
+            value = Long.parseLong(s);
+            value *= radix;
+            if (String.valueOf(value).length() > s.length()) {
+                if (String.valueOf(value).length() - s.length() == 1) {
+                    lastPath.append(String.valueOf(value).charAt(0));
+                    s = deleteFirstElement(String.valueOf(value));
+                }
+                if (String.valueOf(value).length() - s.length() == 2) {
+                    lastPath.append(convertFirstTwoElements(String.valueOf(value).charAt(0),String.valueOf(value).charAt(1)));
+                    s = deleteFirstTwoElements(String.valueOf(value));
+                }
+            } else {
+                lastPath.append("0");
+                s = String.valueOf(value);
+            }
+
+        }
+        String ss = textIn.getText().split(splitS)[0];
+        long t = Long.parseLong(ss, getSystem(boxIn));
+        firstPath.append(Long.toUnsignedString(t, radix));
+        firstPath.append(",").append(lastPath);
+
+        return firstPath.toString();
+    }
+
+    private String convertFirstTwoElements(char c1, char c2){
+        String s = c1 + String.valueOf(c2);
+        switch (s){
+            case "10":
+                s = "a";
+                break;
+            case "11":
+                s="b";
+                break;
+            case "12":
+                s="c";
+                break;
+            case "13":
+                s="d";
+                break;
+            case "14":
+                s="e";
+                break;
+            case "15":
+                s="f";
+                break;
+        }
+        return s;
+    }
+
+    private String deleteFirstTwoElements(String s) {
+        String doneS = "";
+        for (int x = 2; x < s.length(); x++) {
+            doneS += String.valueOf(s.charAt(x));
+        }
+        return doneS;
+    }
+
+    private String deleteFirstElement(String s) {
+        String doneS = "";
+        for (int x = 1; x < s.length(); x++) {
+            doneS += String.valueOf(s.charAt(x));
+        }
+        return doneS;
     }
 
     public void buttonClickCheck() {
         if (checkBox.isSelected()) {
-            textOut.setText(Long.toUnsignedString(Long.parseLong(textIn.getText(), getSystem(boxIn)), getSystem(boxOut)));
+            if (textIn.getText().equals("")) {
+                textOut.setText("");
+            } else {
+                if (convert()){
+                    if (textIn.getText().contains(",") ||textIn.getText().contains(".") ) {
+                        textOut.setText(convertDouble());
+                    }
+                    else {
+                        textOut.setText(Long.toUnsignedString(Long.parseLong(textIn.getText(), getSystem(boxIn)), getSystem(boxOut)));
+                    }
+                }
+            }
         }
 
     }
 
-    public boolean convert() {
+    private boolean convert() {
         Pattern p;
-        switch (getSystem(boxIn)){
+        String s = textIn.getText();
+        if (s.contains(",")|| s.contains(".")) {
+            if (s.split("\\.").length > 2) {
+                getAlert();
+                return false;
+            }
+            if (s.split(",").length > 2) {
+                getAlert();
+                return false;
+            } else {
+                return true;
+            }
+        }
+        switch (getSystem(boxIn)) {
             case 2:
                 p = Pattern.compile("[^01]");
                 break;
@@ -143,28 +251,11 @@ public class Controller implements Initializable {
                 p = Pattern.compile("");
 
         }
-        if (p.matcher(textIn.getText()).find()){
+        if (p.matcher(textIn.getText()).find()) {
             getAlert();
             return false;
-        }
-        else {
-            return true;
-        }
-    }
-
-    private boolean checkTwoSystem(String s) {
-        Pattern pp = Pattern.compile("\\D");
-        Pattern p = Pattern.compile("[^1,0]");
-        if (!pp.matcher(s).find()) {
-            if (!p.matcher(s).find()) {
-                return true;
-            } else {
-                getAlert();
-                return false;
-            }
         } else {
-            getAlert();
-            return false;
+            return true;
         }
     }
 
@@ -220,18 +311,18 @@ public class Controller implements Initializable {
                 error = ErrorEnum.SIXTEEN.getUrl();
                 break;
             default:
-                error = "";
+                error = "Некорректный ввод";
         }
-        alert.setContentText("Разрешено использовать только цифры, в диапозоне: " + error);
+        if (error.equals("Некорректный ввод")) {
+            alert.setContentText(error);
+        } else {
+            alert.setContentText("Разрешено использовать только цифры, в диапозоне: " + error);
+        }
         alert.showAndWait();
     }
 
     public void clickCheckBox(ActionEvent actionEvent) {
-        if (checkBox.isSelected()) {
-            button.setDisable(true);
-        } else {
-            button.setDisable(false);
-        }
+        button.setDisable(checkBox.isSelected());
     }
 
     private String fillPatternIn(int outSystem) {
@@ -260,13 +351,6 @@ public class Controller implements Initializable {
                 "7=> " + Integer.toUnsignedString(7, inSystem) + "=" + Integer.toUnsignedString(7, outSystem) + "\t\t15=> " + Integer.toUnsignedString(15, inSystem) + "=" + Integer.toUnsignedString(15, outSystem) + "\n" +
                 "8=> " + Integer.toUnsignedString(8, inSystem) + "=" + Integer.toUnsignedString(8, outSystem) + "\t\t16=> " + Integer.toUnsignedString(16, inSystem) + "=" + Integer.toUnsignedString(16, outSystem) + "\n";
         return text;
-    }
-
-    private void convertValue() {
-        BigDecimal bigDecimal = new BigDecimal(Long.parseLong("4324D344", 15));
-        System.out.println(bigDecimal);
-        System.out.println(Long.parseLong("4324D344", 15));
-        System.out.println(Integer.toUnsignedString(12, 13));
     }
 
     private int getSystem(ComboBox comboBox) {
