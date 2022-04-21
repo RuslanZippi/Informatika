@@ -1,21 +1,13 @@
 package sample;
 
-import com.sun.org.omg.CORBA.Initializer;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
 
-
-import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static javafx.scene.input.KeyEvent.KEY_PRESSED;
 
 
 public class Controller implements Initializable {

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProductCatalog>
+    <Product>
+        <Code>1</Code>
+        <Name>name1</Name>
+        <Date>
+            <DateCheck/>
+            <Price/>
+        </Date>
+        <Date>
+            <DateCheck/>
+            <Price/>
+        </Date>
+    </Product>
+
+    <Product>
+        <Code>1</Code>
+        <Name>name1</Name>
+        <Date>
+            <DateCheck/>
+            <Price/>
+        </Date>
+        <Date>
+            <DateCheck/>
+            <Price/>
+        </Date>
+    </Product>
+
+
+    <Product>
+        <Code>2</Code>
+        <Name>name1</Name>
+        <Date>
+            <DateCheck/>
+            <Price/>
+        </Date>
+        <Date>
+            <DateCheck/>
+            <Price/>
+        </Date>
+    </Product>
+    <Product>
+        <Code>TestCode</Code>
+        <Name>TestName</Name>
+        <Date>
+            <DateCheck>Thu Apr 21 14:11:02 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+        </Date>
+    </Product>
+</ProductCatalog>
