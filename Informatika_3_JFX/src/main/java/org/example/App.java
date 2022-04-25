@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.example.http.HTTPParser;
 import org.example.xml.XMLCreator;
 
 import java.io.IOException;
@@ -44,6 +45,10 @@ public class App extends Application {
         XMLCreator creator = new XMLCreator("test.xml");
         creator.writeDataByCode(strings);
         creator.delete("2");
+
+        HTTPParser parser = new HTTPParser("https://www.dns-shop.ru/product/e13899d1cb013332/kronstejn-dla-tv-onkron-sn31-cernyj/");
+
+        parser.parse();
         launch();
     }
 
