@@ -16,8 +16,8 @@ public class HTTPParser {
         String[] strings = new String[5];
 
 
-        System.out.println(this.getClass().getClassLoader().getResource("chromedriver.exe").getPath());
-        System.setProperty("webdriver.gecko.driver", this.getClass().getResource("chromedriver.exe").toString());
+        System.out.println(this.getClass().getClassLoader().getResource("org/example/chromedriver.exe").getPath());
+        System.setProperty("webdriver.gecko.driver", this.getClass().getResource("org/example/chromedriver.exe").toString());
 
         WebDriver driver = new ChromeDriver();
 
