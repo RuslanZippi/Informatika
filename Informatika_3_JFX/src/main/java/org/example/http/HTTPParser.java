@@ -5,28 +5,32 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class HTTPParser {
-    String link;
+import java.util.Date;
 
-    public HTTPParser(String link) {
-        this.link = link;
+public class HTTPParser {
+    private static final HTTPParser httpParser = new HTTPParser();
+
+    private HTTPParser() {
+        System.setProperty("webdriver.chrome.driver","src\\main\\resources\\org\\example\\chromedriver.exe");
     }
 
-    public String[] parse(){
+    public static HTTPParser getInstance(){
+        return httpParser;
+    }
+
+    public String[] parse(String link){
         String[] strings = new String[5];
-
-
-        System.out.println(this.getClass().getClassLoader().getResource("org/example/chromedriver.exe").getPath());
-        System.setProperty("webdriver.gecko.driver", this.getClass().getResource("org/example/chromedriver.exe").toString());
-
         WebDriver driver = new ChromeDriver();
 
         driver.get(link);
 
-        System.out.println(driver.findElement(By.className("product-buy__price")).getText().split(" ")[0]);
+        strings[0] = driver.findElement(By.className("product-card-top__code")).getText().split(" ")[2];
+        strings[1] = link;
+        strings[2] = driver.findElement(By.className("product-card-top__title")).getText();
+        strings[3] = driver.findElement(By.className("product-buy__price")).getText().split(" ")[0];
+        strings[4] = new Date().toString();
+
         driver.close();
-
-
         return strings;
 
     }

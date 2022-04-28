@@ -5,14 +5,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import org.example.http.HTTPParser;
 import org.example.xml.XMLCreator;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Date;
+import java.util.Arrays;
+
 
 /**
  * JavaFX App
@@ -44,40 +47,48 @@ public class App extends Application {
 
     public static void main(String[] args) {
 
-        String[] strings = new String[5];
-        strings[0] = "22";
-        strings[1] = "link";
-        strings[2] = "testName";
-        strings[3] = "TestPrice";
-        strings[4] = new Date().toString();
-        XMLCreator creator = new XMLCreator("test.xml");
-        creator.writeDataByCode(strings);
-        creator.delete("2");
+//        String[] strings = new String[5];
+//        strings[0] = "22";
+//        strings[1] = "link";
+//        strings[2] = "testName";
+//        strings[3] = "TestPrice";
+//        strings[4] = new Date().toString();
+//        XMLCreator creator = new XMLCreator("test.xml");
+//        creator.writeDataByCode(strings);
+//        creator.delete("2");
+//
+        HTTPParser parser = HTTPParser.getInstance();
+//        File file = new File("src\\main\\resources\\org\\example\\chromedriver.exe");
+//        if (!file.exists()){
+//            try {
+//                file.createNewFile();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            try {
+//                System.out.println(file.toURL());
+//            } catch (MalformedURLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        else {
+//            System.out.println("ok");
+//            try {
+//                System.out.println(file.toURL());
+//            } catch (MalformedURLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+        Arrays.stream(parser.parse("https://www.dns-shop.ru/product/e13899d1cb013332/kronstejn-dla-tv-onkron-sn31-cernyj/")).forEach(System.out::println);
+//        launch(args);
 
-//        HTTPParser parser = new HTTPParser("https://www.dns-shop.ru/product/e13899d1cb013332/kronstejn-dla-tv-onkron-sn31-cernyj/");
-        File file = new File("src\\main\\resources\\org\\example\\chromedriver.exe");
-        if (!file.exists()){
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                System.out.println(file.toURL());
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-        }
-        else {
-            System.out.println("ok");
-            try {
-                System.out.println(file.toURL());
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-        }
-//        parser.parse();
-        launch(args);
+//        JFrame a = new JFrame("example");
+//        JButton b = new JButton("click me");
+//        b.setBounds(40,90,85,20);
+//        a.add(b);
+//        a.setSize(300,300);
+//        a.setLayout(null);
+//        a.setVisible(true);
     }
 
 }
