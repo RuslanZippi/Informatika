@@ -31,9 +31,12 @@ public class XMLCreator implements Editor {
         this.fileName = fileName;
     }
 
+    /**
+     Создает xml-файл, если его нет, по указаному пути(из конструктора класса)
+     */
+
     @Override
     public void createXMLFile() {
-
         File xmlFile = new File(fileName);
         FileWriter writer;
         if (!xmlFile.exists()) {
@@ -46,18 +49,22 @@ public class XMLCreator implements Editor {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            try {
-                writer = new FileWriter(xmlFile);
-                writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?><ProductCatalog></ProductCatalog>");
-                writer.flush();
-                writer.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
+//        else {
+//            try {
+//                writer = new FileWriter(xmlFile);
+//                writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?><ProductCatalog></ProductCatalog>");
+//                writer.flush();
+//                writer.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
+    /**
+     Удаляет продукт из xml-файла по коду
+     */
     @Override
     public void delete(String code) {
         DocumentBuilder builder;
@@ -79,6 +86,9 @@ public class XMLCreator implements Editor {
         }
     }
 
+    /**
+     Метод для возвращает массив с параметрами продукта по указанному коду
+     */
     @Override
     public String[] readByCode(String code) {
         String [] strings = new String[5];
@@ -101,6 +111,9 @@ public class XMLCreator implements Editor {
         return strings;
     }
 
+    /**
+     Метод парсинга node для формирования массива с параметрами
+     */
     private String[] parseNode(Node node){
         String[] strings = new String[5];
         NodeList list = node.getChildNodes();
@@ -122,6 +135,9 @@ public class XMLCreator implements Editor {
         return strings;
     }
 
+    /**
+     Метод для получения даты (последней из возможных |переделать на получение списка цен !!!| ) из указаного node - продукта
+     */
     private String getCheckDateByNode(Node node){
         NodeList list = node.getChildNodes();
 
@@ -133,6 +149,9 @@ public class XMLCreator implements Editor {
         return "";
     }
 
+    /**
+     Метод для возвращения цены из указаного node - продукта
+     */
     private String getPriceByNode(Node node){
         NodeList list = node.getChildNodes();
 
@@ -144,6 +163,9 @@ public class XMLCreator implements Editor {
         return "";
     }
 
+    /**
+     Метод используется при новой записи продукта
+     */
     @Override
     public void writeData(String... strings) {
         DocumentBuilder builder = null;
@@ -184,6 +206,9 @@ public class XMLCreator implements Editor {
 
     }
 
+    /**
+     Метод
+     */
     @Override
     public void write(Document document, String fileName) {
         try {
@@ -198,6 +223,9 @@ public class XMLCreator implements Editor {
 
     }
 
+    /**
+    Метод используется для добавление новой цены в уже существующие продукты
+     **/
     @Override
     public void writeDataByCode(String... strings) {
         String code = strings[0];

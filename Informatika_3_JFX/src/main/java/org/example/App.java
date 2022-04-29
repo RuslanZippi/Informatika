@@ -64,7 +64,7 @@ public class App extends Application {
         Runnable runnable = () ->
 //                ref.strings = parser.parse("https://www.dns-shop.ru/product/e13899d1cb013332/kronstejn-dla-tv-onkron-sn31-cernyj/");
 //                Arrays.stream(parser.parse("https://www.dns-shop.ru/product/e13899d1cb013332/kronstejn-dla-tv-onkron-sn31-cernyj/")).forEach(System.out::println);
-                creator.writeData(parser.parse("https://www.dns-shop.ru/product/e13899d1cb013332/kronstejn-dla-tv-onkron-sn31-cernyj/"));
+                creator.writeDataByCode(parser.parse("https://www.dns-shop.ru/product/e13899d1cb013332/kronstejn-dla-tv-onkron-sn31-cernyj/"));
         Thread thread = new Thread(runnable);
         thread.start();
 
