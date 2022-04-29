@@ -80,8 +80,68 @@ public class XMLCreator implements Editor {
     }
 
     @Override
-    public void read() {
+    public String[] readByCode(String code) {
+        String [] strings = new String[5];
+        DocumentBuilder builder = null;
+        try {
+            builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            Document document = builder.parse(fileName);
+            NodeList list = document.getElementsByTagName("Code");
 
+            for (int x = 0; x < list.getLength(); x++){
+                if (list.item(x).getTextContent().equals(code)){
+                    Node node = list.item(x).getParentNode();
+                    strings = parseNode(node);
+                }
+            }
+
+        } catch (ParserConfigurationException | SAXException | IOException e) {
+            e.printStackTrace();
+        }
+        return strings;
+    }
+
+    private String[] parseNode(Node node){
+        String[] strings = new String[5];
+        NodeList list = node.getChildNodes();
+
+        for (int x = 0; x < list.getLength(); x++){
+            switch (list.item(x).getNodeName()){
+                case "Code":
+                    strings[0] = list.item(x).getTextContent();
+                case "Link":
+                    strings[1] = list.item(x).getTextContent();
+                case "Name":
+                    strings[2] = list.item(x).getTextContent();
+                case "Date":
+                    strings[3] = getCheckDateByNode(list.item(x));
+                    strings[4] = getPriceByNode(list.item(x));
+            }
+        }
+
+        return strings;
+    }
+
+    private String getCheckDateByNode(Node node){
+        NodeList list = node.getChildNodes();
+
+        for (int x = 0; x < list.getLength(); x++){
+            if (list.item(x).getNodeName().equals("DateCheck")){
+                return list.item(x).getTextContent();
+            }
+        }
+        return "";
+    }
+
+    private String getPriceByNode(Node node){
+        NodeList list = node.getChildNodes();
+
+        for (int x = 0; x < list.getLength(); x++){
+            if (list.item(x).getNodeName().equals("Price")){
+                return list.item(x).getTextContent();
+            }
+        }
+        return "";
     }
 
     @Override

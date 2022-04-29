@@ -14,7 +14,7 @@ public interface Editor {
 
      void createXMLFile();
      void delete(String code);
-     void read();
+     String[] readByCode(String code);
 
      void write(Document document, String fileName);
 

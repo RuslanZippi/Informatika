@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><ProductCatalog>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ProductCatalog>
     <Product>
         <Code>1</Code>
         <Link>link</Link>
@@ -30,7 +31,115 @@
             <Price>TestPrice</Price>
             <DateCheck>Mon Apr 25 16:43:47 MSK 2022</DateCheck>
             <Price>TestPrice</Price>
-        <DateCheck>Mon Apr 25 16:56:40 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 17:22:43 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 17:24:08 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 17:25:34 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 17:25:51 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 17:28:02 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 17:30:10 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 17:30:25 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:16:04 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:16:43 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:17:18 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:20:27 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:21:20 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:21:34 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:22:07 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:23:56 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:24:44 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:27:15 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:28:12 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:29:42 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:31:29 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:31:52 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:32:01 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:33:49 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:34:15 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:34:57 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:39:15 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:39:52 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:43:11 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:47:16 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:50:22 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:50:34 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:51:18 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:51:31 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:52:08 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:57:05 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Mon Apr 25 23:57:46 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Tue Apr 26 00:01:15 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Tue Apr 26 00:01:32 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Tue Apr 26 00:03:00 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Tue Apr 26 00:03:08 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Tue Apr 26 00:03:19 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Tue Apr 26 00:04:13 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Tue Apr 26 00:05:37 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Tue Apr 26 00:05:58 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Tue Apr 26 00:06:09 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Tue Apr 26 00:07:03 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Tue Apr 26 00:07:16 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Tue Apr 26 00:07:42 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Tue Apr 26 00:08:11 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Tue Apr 26 00:09:26 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Tue Apr 26 00:12:39 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Tue Apr 26 00:13:22 MSK 2022</DateCheck><Price>TestPrice</Price><DateCheck>Tue Apr 26 00:23:38 MSK 2022</DateCheck><Price>TestPrice</Price></Date>
+            <DateCheck>Mon Apr 25 16:56:40 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 17:22:43 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 17:24:08 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 17:25:34 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 17:25:51 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 17:28:02 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 17:30:10 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 17:30:25 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:16:04 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:16:43 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:17:18 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:20:27 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:21:20 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:21:34 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:22:07 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:23:56 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:24:44 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:27:15 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:28:12 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:29:42 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:31:29 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:31:52 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:32:01 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:33:49 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:34:15 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:34:57 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:39:15 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:39:52 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:43:11 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:47:16 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:50:22 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:50:34 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:51:18 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:51:31 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:52:08 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:57:05 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Mon Apr 25 23:57:46 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Tue Apr 26 00:01:15 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Tue Apr 26 00:01:32 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Tue Apr 26 00:03:00 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Tue Apr 26 00:03:08 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Tue Apr 26 00:03:19 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Tue Apr 26 00:04:13 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Tue Apr 26 00:05:37 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Tue Apr 26 00:05:58 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Tue Apr 26 00:06:09 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Tue Apr 26 00:07:03 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Tue Apr 26 00:07:16 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Tue Apr 26 00:07:42 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Tue Apr 26 00:08:11 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Tue Apr 26 00:09:26 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Tue Apr 26 00:12:39 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Tue Apr 26 00:13:22 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+            <DateCheck>Tue Apr 26 00:23:38 MSK 2022</DateCheck>
+            <Price>TestPrice</Price>
+        </Date>
     </Product>
 
 </ProductCatalog>

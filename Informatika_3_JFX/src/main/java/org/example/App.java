@@ -10,6 +10,9 @@ import org.example.http.HTTPParser;
 import org.example.xml.XMLCreator;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -47,48 +50,76 @@ public class App extends Application {
 
     public static void main(String[] args) {
 
-//        String[] strings = new String[5];
-//        strings[0] = "22";
-//        strings[1] = "link";
-//        strings[2] = "testName";
-//        strings[3] = "TestPrice";
-//        strings[4] = new Date().toString();
-//        XMLCreator creator = new XMLCreator("test.xml");
-//        creator.writeDataByCode(strings);
-//        creator.delete("2");
-//
+        XMLCreator creator = new XMLCreator("test1.xml");
+
+        creator.createXMLFile();
+
         HTTPParser parser = HTTPParser.getInstance();
-//        File file = new File("src\\main\\resources\\org\\example\\chromedriver.exe");
-//        if (!file.exists()){
-//            try {
-//                file.createNewFile();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            try {
-//                System.out.println(file.toURL());
-//            } catch (MalformedURLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        else {
-//            System.out.println("ok");
-//            try {
-//                System.out.println(file.toURL());
-//            } catch (MalformedURLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-        Arrays.stream(parser.parse("https://www.dns-shop.ru/product/e13899d1cb013332/kronstejn-dla-tv-onkron-sn31-cernyj/")).forEach(System.out::println);
+
+
+        var ref = new Object() {
+            String[] strings = new String[5];
+        };
+
+        Runnable runnable = () ->
+//                ref.strings = parser.parse("https://www.dns-shop.ru/product/e13899d1cb013332/kronstejn-dla-tv-onkron-sn31-cernyj/");
+//                Arrays.stream(parser.parse("https://www.dns-shop.ru/product/e13899d1cb013332/kronstejn-dla-tv-onkron-sn31-cernyj/")).forEach(System.out::println);
+                creator.writeData(parser.parse("https://www.dns-shop.ru/product/e13899d1cb013332/kronstejn-dla-tv-onkron-sn31-cernyj/"));
+        Thread thread = new Thread(runnable);
+        thread.start();
+
+//        Arrays.stream(parser.parse("https://www.dns-shop.ru/product/e13899d1cb013332/kronstejn-dla-tv-onkron-sn31-cernyj/")).forEach(System.out::println);
 //        launch(args);
 
-//        JFrame a = new JFrame("example");
-//        JButton b = new JButton("click me");
-//        b.setBounds(40,90,85,20);
-//        a.add(b);
-//        a.setSize(300,300);
-//        a.setLayout(null);
-//        a.setVisible(true);
+
+        JFrame a = new JFrame("example");
+        JButton button = new JButton("getData");
+        JButton buttonCode = new JButton("Code");
+        JButton buttonName = new JButton("Name");
+        JButton buttonLink = new JButton("Link");
+        JButton buttonDate = new JButton("Date");
+        JButton buttonPrice = new JButton("Price");
+
+        JTextArea textCode = new JTextArea();
+        JTextArea textLink = new JTextArea();
+        JTextArea textName = new JTextArea();
+        JTextArea textDate = new JTextArea();
+        JTextArea textPrice = new JTextArea();
+
+        textCode.setBounds(10, 50, 80, 20);
+        textLink.setBounds(100, 50, 80, 20);
+        textName.setBounds(190, 50, 80, 20);
+        textDate.setBounds(280, 50, 80, 20);
+        textPrice.setBounds(370, 50, 80, 20);
+        a.add(textCode);
+        a.add(textName);
+        a.add(textLink);
+        a.add(textDate);
+        a.add(textPrice);
+
+        button.setBounds(10,100,80,20);
+        buttonCode.setBounds(10, 10, 80, 20);
+        buttonName.setBounds(100, 10, 80, 20);
+        buttonLink.setBounds(190, 10, 80, 20);
+        buttonDate.setBounds(280, 10, 80, 20);
+        buttonPrice.setBounds(370, 10, 80, 20);
+//        b.setAction();
+        button.addActionListener(e-> ref.strings = creator.readByCode("1391651"));
+        buttonCode.addActionListener(e -> textCode.setText(ref.strings[0]));
+        buttonLink.addActionListener(e -> textLink.setText(ref.strings[1]));
+        buttonName.addActionListener(e -> textName.setText(ref.strings[2]));
+        buttonDate.addActionListener(e -> textDate.setText(ref.strings[4]));
+        buttonPrice.addActionListener(e -> textPrice.setText(ref.strings[3]));
+
+        a.add(button);
+        a.add(buttonCode);
+        a.add(buttonName);
+        a.add(buttonLink);
+        a.add(buttonDate);
+        a.add(buttonPrice);
+        a.setSize(800, 800);
+        a.setLayout(null);
+        a.setVisible(true);
     }
 
 }
