@@ -32,7 +32,7 @@ public class XMLCreator implements Editor {
     }
 
     /**
-     Создает xml-файл, если его нет, по указаному пути(из конструктора класса)
+     * Создает xml-файл, если его нет, по указаному пути(из конструктора класса)
      */
 
     @Override
@@ -63,7 +63,7 @@ public class XMLCreator implements Editor {
     }
 
     /**
-     Удаляет продукт из xml-файла по коду
+     * Удаляет продукт из xml-файла по коду
      */
     @Override
     public void delete(String code) {
@@ -87,19 +87,20 @@ public class XMLCreator implements Editor {
     }
 
     /**
-     Метод для возвращает массив с параметрами продукта по указанному коду
+     * Метод для возвращает массив с параметрами продукта по указанному коду
      */
     @Override
     public String[] readByCode(String code) {
-        String [] strings = new String[5];
+        String[] strings = new String[5];
         DocumentBuilder builder = null;
         try {
             builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document document = builder.parse(fileName);
             NodeList list = document.getElementsByTagName("Code");
 
-            for (int x = 0; x < list.getLength(); x++){
-                if (list.item(x).getTextContent().equals(code)){
+
+            for (int x = 0; x < list.getLength(); x++) {
+                if (list.item(x).getTextContent().equals(code)) {
                     Node node = list.item(x).getParentNode();
                     strings = parseNode(node);
                 }
@@ -112,14 +113,14 @@ public class XMLCreator implements Editor {
     }
 
     /**
-     Метод парсинга node для формирования массива с параметрами
+     * Метод парсинга node для формирования массива с параметрами
      */
-    private String[] parseNode(Node node){
+    private String[] parseNode(Node node) {
         String[] strings = new String[5];
         NodeList list = node.getChildNodes();
 
-        for (int x = 0; x < list.getLength(); x++){
-            switch (list.item(x).getNodeName()){
+        for (int x = 0; x < list.getLength(); x++) {
+            switch (list.item(x).getNodeName()) {
                 case "Code":
                     strings[0] = list.item(x).getTextContent();
                 case "Link":
@@ -136,13 +137,13 @@ public class XMLCreator implements Editor {
     }
 
     /**
-     Метод для получения даты (последней из возможных |переделать на получение списка цен !!!| ) из указаного node - продукта
+     * Метод для получения даты (последней из возможных |переделать на получение списка цен !!!| ) из указаного node - продукта
      */
-    private String getCheckDateByNode(Node node){
+    private String getCheckDateByNode(Node node) {
         NodeList list = node.getChildNodes();
 
-        for (int x = 0; x < list.getLength(); x++){
-            if (list.item(x).getNodeName().equals("DateCheck")){
+        for (int x = 0; x < list.getLength(); x++) {
+            if (list.item(x).getNodeName().equals("DateCheck")) {
                 return list.item(x).getTextContent();
             }
         }
@@ -150,13 +151,13 @@ public class XMLCreator implements Editor {
     }
 
     /**
-     Метод для возвращения цены из указаного node - продукта
+     * Метод для возвращения цены из указаного node - продукта
      */
-    private String getPriceByNode(Node node){
+    private String getPriceByNode(Node node) {
         NodeList list = node.getChildNodes();
 
-        for (int x = 0; x < list.getLength(); x++){
-            if (list.item(x).getNodeName().equals("Price")){
+        for (int x = 0; x < list.getLength(); x++) {
+            if (list.item(x).getNodeName().equals("Price")) {
                 return list.item(x).getTextContent();
             }
         }
@@ -164,7 +165,7 @@ public class XMLCreator implements Editor {
     }
 
     /**
-     Метод используется при новой записи продукта
+     * Метод используется при новой записи продукта
      */
     @Override
     public void writeData(String... strings) {
@@ -182,17 +183,20 @@ public class XMLCreator implements Editor {
             Element price = document.createElement("Price");
             Element date = document.createElement("Date");
             Element dateCheck = document.createElement("DateCheck");
+            Element image = document.createElement("Image");
 
             code.setTextContent(strings[0]);
             link.setTextContent(strings[1]);
             name.setTextContent(strings[2]);
             price.setTextContent(strings[3]);
             dateCheck.setTextContent(strings[4]);
+            image.setTextContent(strings[5]);
 
             product.appendChild(code);
             product.appendChild(link);
             product.appendChild(name);
             product.appendChild(date);
+            product.appendChild(image);
 
             date.appendChild(dateCheck);
             date.appendChild(price);
@@ -203,11 +207,10 @@ public class XMLCreator implements Editor {
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
-     Метод
+     * Метод
      */
     @Override
     public void write(Document document, String fileName) {
@@ -224,7 +227,7 @@ public class XMLCreator implements Editor {
     }
 
     /**
-    Метод используется для добавление новой цены в уже существующие продукты
+     * Метод используется для добавление новой цены в уже существующие продукты
      **/
     @Override
     public void writeDataByCode(String... strings) {
@@ -240,22 +243,60 @@ public class XMLCreator implements Editor {
             price.setTextContent(strings[3]);
 
             NodeList nodeList = document.getElementsByTagName("Code");
+            if (nodeList.getLength() == 0) {
+                writeData(strings);
+                return;
+            }
             NodeList childList = null;
             for (int x = 0; x < nodeList.getLength(); x++) {
                 if (nodeList.item(x).getTextContent().equals(code)) {
                     childList = nodeList.item(x).getParentNode().getChildNodes();
+                    break;
                 }
             }
-            System.out.println(childList.getLength());
-            for (int x = 0; x < childList.getLength(); x++) {
-                if (childList.item(x).getNodeName().equals("Date")){
-                    childList.item(x).appendChild(dateCheck);
-                    childList.item(x).appendChild(price);
+            if (childList != null) {
+                for (int x = 0; x < childList.getLength(); x++) {
+                    if (childList.item(x).getNodeName().equals("Date")) {
+                        childList.item(x).appendChild(dateCheck);
+                        childList.item(x).appendChild(price);
+                    }
                 }
+                write(document, fileName);
+            } else {
+                writeData(strings);
             }
-            write(document,fileName);
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Проверяет существует ли товар по коду
+     */
+    private boolean checker(String code) {
+        DocumentBuilder builder;
+        try {
+            builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+
+            Document document = builder.parse(fileName);
+
+            NodeList list = document.getElementsByTagName("Code");
+            if (list.getLength() == 0) {
+                return false;
+            } else {
+                NodeList childList = null;
+                for (int x = 0; x < list.getLength(); x++) {
+                    if (list.item(x).getTextContent().equals(code)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+
+        } catch (ParserConfigurationException | SAXException | IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
