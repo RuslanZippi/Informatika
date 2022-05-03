@@ -5,15 +5,16 @@ import org.example.image.ImageConvertor;
 import org.example.xml.XMLCreator;
 
 import javax.swing.*;
+import java.io.IOException;
 
 
 /**
  * JavaFX App
  */
-public class App  {
+public class App {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         XMLCreator creator = new XMLCreator("test1.xml");
 
@@ -24,13 +25,36 @@ public class App  {
             String[] strings = new String[5];
         };
 
-        Runnable runnable = () ->
-                creator.writeDataByCode(parser.parse("https://www.dns-shop.ru/product/e13899d1cb013332/kronstejn-dla-tv-onkron-sn31-cernyj/"));
-        Thread thread = new Thread(runnable);
-        thread.start();
+//        Runnable runnable = () -> {
+//            ArrayList<String> list = creator.getArraysLink();
+//            for (int x = 0; x < list.size(); x++) {
+//                creator.writeDataByCode(parser.parse(list.get(x)));
+//            }
+////            creator.writeDataByCode(parser.parse("https://www.dns-shop.ru/product/e13899d1cb013332/kronstejn-dla-tv-onkron-sn31-cernyj/"));
+//        };
+//        ArrayList<String> list = new ArrayList<String>();
+//
+//        Thread thread = new Thread(runnable);
+//        thread.start();
+//        Runnable runnable;
+//        Thread thread;
+//        ArrayList<String> list = creator.getArraysLink();
+//        for (int x = 0; x < list.size(); x++) {
+//            creator.writeDataByCode(parser.parse(list.get(x)));
+//            int finalX = x;
+//            runnable = ()-> {
+//                creator.writeDataByCode(parser.parse(list.get(finalX)));
+//            };
+//            thread = new Thread(runnable);
+//            thread.start();
+//        }
 
         JFrame a = new JFrame("example");
 //        JPanel panel = new JPanel();
+        JComboBox<String> stringJComboBox = new JComboBox<>();
+        creator.getProductNameList().forEach(stringJComboBox::addItem);
+        stringJComboBox.setBounds(100,100,500,30);
+
 
         JLabel label = new JLabel();
         JButton setData = new JButton("setData");
@@ -49,12 +73,12 @@ public class App  {
         JTextArea inputLink = new JTextArea();
 
         label.setIcon(ImageConvertor.resizeImage("image.jpg"));
-        label.setBounds(10,200,500,500);
+        label.setBounds(10, 200, 500, 500);
         a.add(label);
 
 //        panel.setBounds(10,50,100,100);
 //        a.add(panel);
-        inputLink.setBounds(10,100,80,20);
+        inputLink.setBounds(10, 100, 80, 20);
         textCode.setBounds(10, 50, 80, 20);
         textLink.setBounds(100, 50, 80, 20);
         textName.setBounds(190, 50, 80, 20);
@@ -67,21 +91,22 @@ public class App  {
         a.add(textDate);
         a.add(textPrice);
         a.add(inputLink);
-
-        setData.setBounds(10,200,80,20);
-        button.setBounds(10,100,80,20);
+        a.add(stringJComboBox);
+        setData.setBounds(10, 200, 80, 20);
+        button.setBounds(10, 100, 80, 20);
         buttonCode.setBounds(10, 10, 80, 20);
         buttonName.setBounds(100, 10, 80, 20);
         buttonLink.setBounds(190, 10, 80, 20);
         buttonDate.setBounds(280, 10, 80, 20);
         buttonPrice.setBounds(370, 10, 80, 20);
 
-        setData.addActionListener(e-> {
-            if (inputLink.getText() !=null){
-                creator.writeDataByCode(parser.parse(inputLink.getText()));
-            }
+        setData.addActionListener(e -> {
+//            if (inputLink.getText() != null) {
+//                creator.writeDataByCode(parser.parse(inputLink.getText()));
+//            }
+            creator.getProductNameList();
         });
-        button.addActionListener(e-> ref.strings = creator.readByCode("1391651"));
+        button.addActionListener(e -> ref.strings = creator.readByCode("1391651"));
         buttonCode.addActionListener(e -> textCode.setText(ref.strings[0]));
         buttonLink.addActionListener(e -> textLink.setText(ref.strings[1]));
         buttonName.addActionListener(e -> textName.setText(ref.strings[2]));

@@ -14,14 +14,8 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Date;
-
-import static org.jsoup.nodes.Document.OutputSettings.Syntax.xml;
+import java.io.*;
+import java.util.ArrayList;
 
 public class XMLCreator implements Editor {
 
@@ -299,4 +293,25 @@ public class XMLCreator implements Editor {
         }
         return false;
     }
+
+    public ArrayList<String> getProductNameList() {
+        ArrayList<String> list = new ArrayList<>();
+
+        try {
+            DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+
+            Document document = builder.parse(fileName);
+
+            NodeList nodeList = document.getElementsByTagName("Name");
+
+            for (int x = 0; x < nodeList.getLength(); x++) {
+//                System.out.println(nodeList.item(x).getTextContent());
+                list.add(nodeList.item(x).getTextContent());
+            }
+        } catch (ParserConfigurationException | SAXException | IOException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }

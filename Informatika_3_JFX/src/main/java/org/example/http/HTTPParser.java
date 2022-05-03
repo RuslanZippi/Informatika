@@ -24,10 +24,12 @@ public class HTTPParser {
 
         driver.get(link);
 
+
+
         strings[0] = driver.findElement(By.className("product-card-top__code")).getText().split(" ")[2];
         strings[1] = link;
         strings[2] = driver.findElement(By.className("product-card-top__title")).getText();
-        strings[3] = driver.findElement(By.className("product-buy__price")).getText().split(" ")[0];
+        strings[3] = driver.findElement(By.className("product-buy__price")).getText().split("₽")[0];
         strings[4] = new Date().toString();
         strings[5] = driver.findElement(By.tagName("img")).getAttribute("src");
 
@@ -36,4 +38,6 @@ public class HTTPParser {
         return strings;
 
     }
+
+
 }
