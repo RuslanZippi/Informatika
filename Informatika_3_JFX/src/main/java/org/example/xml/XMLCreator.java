@@ -1,5 +1,6 @@
 package org.example.xml;
 
+import com.beust.ah.A;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -294,6 +295,9 @@ public class XMLCreator implements Editor {
         return false;
     }
 
+    /**
+     * Получение списка названия продукта
+     */
     public ArrayList<String> getProductNameList() {
         ArrayList<String> list = new ArrayList<>();
 
@@ -307,6 +311,48 @@ public class XMLCreator implements Editor {
             for (int x = 0; x < nodeList.getLength(); x++) {
 //                System.out.println(nodeList.item(x).getTextContent());
                 list.add(nodeList.item(x).getTextContent());
+            }
+        } catch (ParserConfigurationException | SAXException | IOException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public ArrayList<String> getPriceByName(String productName) {
+        ArrayList<String> list = new ArrayList<>();
+
+        try {
+            DocumentBuilder builder = DocumentBuilderFactory.newDefaultInstance().newDocumentBuilder();
+            Document document = builder.parse(fileName);
+
+            NodeList nodeList = document.getElementsByTagName("Name");
+            Node node = null;
+            for (int x = 0; x < nodeList.getLength(); x++) {
+                if (nodeList.item(x).getTextContent().equals(productName)) {
+                    node = nodeList.item(x).getParentNode();
+                    break;
+                }
+            }
+
+            NodeList list1 = node.getChildNodes();
+            NodeList dateList = null;
+            for (int x = 0; x < list1.getLength(); x++) {
+                if (list1.item(x).getNodeName().equals("Date")) {
+                    dateList = list1.item(x).getChildNodes();
+
+                }
+            }
+            String data = "";
+            for (int x = 0; x < dateList.getLength(); x++) {
+                if (dateList.item(x).getNodeName().equals("DateCheck")) {
+
+                    data = dateList.item(x).getTextContent();
+                }
+                if (dateList.item(x).getNodeName().equals("Price")) {
+                    data = data + "\t" + dateList.item(x).getTextContent();
+                }
+                list.add(data);
+                data = "";
             }
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
