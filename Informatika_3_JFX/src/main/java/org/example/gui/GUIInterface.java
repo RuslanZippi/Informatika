@@ -5,18 +5,16 @@ import org.example.image.ImageConvertor;
 import org.example.xml.XMLCreator;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class GUIInterface {
-    private final XMLCreator creator = new XMLCreator("DNS.xml");
+    private final XMLCreator creator = new XMLCreator("Informatica\\files\\DNS.xml");
     private final HTTPParser parser = HTTPParser.getInstance();
     private boolean checker = false;
 
     public void createInterface() {
 
         creator.createXMLFile();
-        var ref = new Object() {
-            String[] strings = new String[5];
-        };
 
         /**
          * Создание элементов
@@ -27,7 +25,9 @@ public class GUIInterface {
         JButton refreshButton = new JButton("Обновить данные");
         JButton addButton = new JButton("Добавить продукт");
         JButton lookingButton = new JButton("Просмотреть цену выбранного товара");
-        JTextArea textAreaData = new JTextArea("TestText");
+        JTextArea textAreaData = new JTextArea();
+        JButton refreshAll = new JButton("Обновить все данные");
+        JScrollPane scrollPane = new JScrollPane(textAreaData,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         JDialog dataDialog = new JDialog(mainFrame, true);
         JTextArea inputLinkTextInDialog = new JTextArea();
@@ -45,8 +45,10 @@ public class GUIInterface {
         stringJComboBox.setBounds(10, 10, 500, 30);
         addButton.setBounds(550, 10, 200, 30);
         refreshButton.setBounds(550, 60, 200, 30);
-        textAreaData.setBounds(10, 300, 600, 300);
+        scrollPane.setBounds(10, 300, 600, 300);
         lookingButton.setBounds(80, 100, 300, 30);
+        refreshAll.setBounds(80,140,200,30);
+        scrollPane.setVisible(true);
         /**
          */
 
@@ -75,8 +77,9 @@ public class GUIInterface {
         mainFrame.add(stringJComboBox);
         mainFrame.add(refreshButton);
         mainFrame.add(addButton);
-        mainFrame.add(textAreaData);
         mainFrame.add(lookingButton);
+        mainFrame.add(refreshAll);
+        mainFrame.add(scrollPane);
         /**
          */
 
@@ -94,12 +97,20 @@ public class GUIInterface {
         });
 
         refreshButton.addActionListener(e -> {
+            stringJComboBox.removeAllItems();
             creator.getProductNameList().forEach(stringJComboBox::addItem);
         });
 
         lookingButton.addActionListener(e->{
             textAreaData.setText("");
             creator.getPriceByName(stringJComboBox.getSelectedItem().toString()).forEach(x-> textAreaData.append(x + "\n"));
+        });
+
+        refreshAll.addActionListener(e->{
+            ArrayList<String[]> list = parser.parseLinks(creator.getProductLinkList());
+            for (int x = 0; x< list.size();x++){
+                creator.writeDataByCode(list.get(x));
+            }
         });
         /**
          */

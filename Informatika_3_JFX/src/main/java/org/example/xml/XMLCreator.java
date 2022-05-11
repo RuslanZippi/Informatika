@@ -16,6 +16,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class XMLCreator implements Editor {
@@ -36,7 +38,9 @@ public class XMLCreator implements Editor {
         FileWriter writer;
         if (!xmlFile.exists()) {
             try {
-                xmlFile.createNewFile();
+
+                Files.createDirectories(Path.of("Informatica\\files"));
+                Files.createFile(Path.of(fileName));
                 writer = new FileWriter(xmlFile);
                 writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?><ProductCatalog></ProductCatalog>");
                 writer.flush();
@@ -309,7 +313,6 @@ public class XMLCreator implements Editor {
             NodeList nodeList = document.getElementsByTagName("Name");
 
             for (int x = 0; x < nodeList.getLength(); x++) {
-//                System.out.println(nodeList.item(x).getTextContent());
                 list.add(nodeList.item(x).getTextContent());
             }
         } catch (ParserConfigurationException | SAXException | IOException e) {
@@ -318,6 +321,9 @@ public class XMLCreator implements Editor {
         return list;
     }
 
+    /**
+     * Возвращает список цен продукта по названию
+     */
     public ArrayList<String> getPriceByName(String productName) {
         ArrayList<String> list = new ArrayList<>();
 
@@ -360,4 +366,21 @@ public class XMLCreator implements Editor {
         return list;
     }
 
+    public ArrayList<String> getProductLinkList() {
+        ArrayList<String> list = new ArrayList<>();
+        DocumentBuilder builder = null;
+        try {
+            builder = DocumentBuilderFactory.newDefaultInstance().newDocumentBuilder();
+            Document document = builder.parse(fileName);
+
+            NodeList nodeList = document.getElementsByTagName("Link");
+            for (int x = 0; x < nodeList.getLength(); x++) {
+                list.add(nodeList.item(x).getTextContent());
+            }
+        } catch (ParserConfigurationException | SAXException | IOException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
 }
