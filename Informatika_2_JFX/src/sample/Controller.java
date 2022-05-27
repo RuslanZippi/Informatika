@@ -71,7 +71,7 @@ public class Controller implements Initializable {
 
     public void buttonClick() {
         if (convert()) {
-            if (textIn.getText().contains(",") ||textIn.getText().contains(".") ) {
+            if (textIn.getText().contains(",") || textIn.getText().contains(".")) {
                 textOut.setText(convertDouble());
             } else {
                 textOut.setText(Long.toUnsignedString(Long.parseLong(textIn.getText(), getSystem(boxIn)), getSystem(boxOut)));
@@ -82,27 +82,32 @@ public class Controller implements Initializable {
     private String convertDouble() {
         StringBuilder firstPath = new StringBuilder();
         StringBuilder lastPath = new StringBuilder();
+        int radixIn = getSystem(boxIn);
         int radix = getSystem(boxOut);
         long value;
         String s = textIn.getText();
         String splitS = "";
-        if (s.contains(".")){
+        if (s.contains(".")) {
             splitS = "\\.";
-        }
-        else {
+        } else {
             splitS = ",";
         }
         s = s.split(splitS)[1];
+        boolean checker = true;
         for (int x = 0; x < 10; x++) {
             value = Long.parseLong(s);
             value *= radix;
+            if (radixIn != 10 && checker) {
+                s = transformToTen(s,radixIn);
+                checker = false;
+            }
             if (String.valueOf(value).length() > s.length()) {
                 if (String.valueOf(value).length() - s.length() == 1) {
                     lastPath.append(String.valueOf(value).charAt(0));
                     s = deleteFirstElement(String.valueOf(value));
                 }
                 if (String.valueOf(value).length() - s.length() == 2) {
-                    lastPath.append(convertFirstTwoElements(String.valueOf(value).charAt(0),String.valueOf(value).charAt(1)));
+                    lastPath.append(convertFirstTwoElements(String.valueOf(value).charAt(0), String.valueOf(value).charAt(1)));
                     s = deleteFirstTwoElements(String.valueOf(value));
                 }
             } else {
@@ -119,26 +124,44 @@ public class Controller implements Initializable {
         return firstPath.toString();
     }
 
-    private String convertFirstTwoElements(char c1, char c2){
+    private String transformToTen(String s, int radix) {
+        System.out.println(s);
+        double y  = 0;
+        for (int x = 0; x < s.length(); x++) {
+            double scale = Math.pow(10,8);
+            System.out.println(s.charAt(x) + "*" + (Math.ceil(Math.pow(radix,(x+1)*-1)*scale))/scale);
+            double textY = Math.pow(radix,(x+1)*-1);
+            System.out.println(s.charAt(x));
+            System.out.println(Math.pow(radix,(x+1)*-1));
+            y += s.charAt(x)*(Math.pow(radix,(x+1)*-1));
+//            System.out.println(s.charAt(x));
+//            System.out.println("Result " + y);
+        }
+
+        System.out.println(Integer.parseInt("88",radix));
+        return s;
+    }
+
+    private String convertFirstTwoElements(char c1, char c2) {
         String s = c1 + String.valueOf(c2);
-        switch (s){
+        switch (s) {
             case "10":
                 s = "a";
                 break;
             case "11":
-                s="b";
+                s = "b";
                 break;
             case "12":
-                s="c";
+                s = "c";
                 break;
             case "13":
-                s="d";
+                s = "d";
                 break;
             case "14":
-                s="e";
+                s = "e";
                 break;
             case "15":
-                s="f";
+                s = "f";
                 break;
         }
         return s;
@@ -165,11 +188,10 @@ public class Controller implements Initializable {
             if (textIn.getText().equals("")) {
                 textOut.setText("");
             } else {
-                if (convert()){
-                    if (textIn.getText().contains(",") ||textIn.getText().contains(".") ) {
+                if (convert()) {
+                    if (textIn.getText().contains(",") || textIn.getText().contains(".")) {
                         textOut.setText(convertDouble());
-                    }
-                    else {
+                    } else {
                         textOut.setText(Long.toUnsignedString(Long.parseLong(textIn.getText(), getSystem(boxIn)), getSystem(boxOut)));
                     }
                 }
@@ -181,7 +203,7 @@ public class Controller implements Initializable {
     private boolean convert() {
         Pattern p;
         String s = textIn.getText();
-        if (s.contains(",")|| s.contains(".")) {
+        if (s.contains(",") || s.contains(".")) {
             if (s.split("\\.").length > 2) {
                 getAlert();
                 return false;

@@ -14,7 +14,6 @@ public class HTTPParser {
 
     private HTTPParser() {
         System.setProperty("webdriver.chrome.driver","Informatica\\files\\chromedriver.exe");
-//        System.out.println(this.getClass().getClassLoader().getResource("org\\example\\chromedriver.exe"));
     }
 
     public static HTTPParser getInstance(){
@@ -33,8 +32,6 @@ public class HTTPParser {
         strings[3] = driver.findElement(By.className("product-buy__price")).getText().split("₽")[0];
         strings[4] = new SimpleDateFormat("HH:mm dd-MM-yyyy").format(new Date());
         strings[5] = driver.findElement(By.tagName("img")).getAttribute("src");
-
-//        System.out.println(driver.findElement(By.tagName("img")).getAttribute("src"));
         driver.close();
         return strings;
 
@@ -58,8 +55,6 @@ public class HTTPParser {
             strings[3] = driver.findElement(By.className("product-buy__price")).getText().split("₽")[0];
             strings[4] = new SimpleDateFormat("HH:mm dd-MM-yyyy").format(new Date());
             strings[5] = driver.findElement(By.tagName("img")).getAttribute("src");
-//            Arrays.stream(strings).forEach(System.out::println);
-//            System.out.println("IN method: " + strings);
             arrayList.add(strings);
         }
         driver.close();

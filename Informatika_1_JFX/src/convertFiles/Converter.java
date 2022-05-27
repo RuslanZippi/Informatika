@@ -17,8 +17,6 @@ public class Converter {
         Arrays.stream(line.split(" +")).forEach(x -> {
             list.add(x.trim());
         });
-
-
         return list;
     }
 
