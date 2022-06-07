@@ -95,12 +95,12 @@ public class Controller implements Initializable {
         s = s.split(splitS)[1];
         boolean checker = true;
         for (int x = 0; x < 10; x++) {
-            value = Long.parseLong(s);
-            value *= radix;
             if (radixIn != 10 && checker) {
                 s = transformToTen(s,radixIn);
                 checker = false;
             }
+            value = Long.parseLong(s);
+            value *= radix;
             if (String.valueOf(value).length() > s.length()) {
                 if (String.valueOf(value).length() - s.length() == 1) {
                     lastPath.append(String.valueOf(value).charAt(0));
@@ -125,21 +125,15 @@ public class Controller implements Initializable {
     }
 
     private String transformToTen(String s, int radix) {
-        System.out.println(s);
+        String doublePath = "";
         double y  = 0;
         for (int x = 0; x < s.length(); x++) {
-            double scale = Math.pow(10,8);
-            System.out.println(s.charAt(x) + "*" + (Math.ceil(Math.pow(radix,(x+1)*-1)*scale))/scale);
             double textY = Math.pow(radix,(x+1)*-1);
-            System.out.println(s.charAt(x));
-            System.out.println(Math.pow(radix,(x+1)*-1));
-            y += s.charAt(x)*(Math.pow(radix,(x+1)*-1));
-//            System.out.println(s.charAt(x));
-//            System.out.println("Result " + y);
+            double textZ = Double.parseDouble(String.valueOf(s.charAt(x)));
+            y += textY*textZ;
         }
-
-        System.out.println(Integer.parseInt("88",radix));
-        return s;
+        doublePath = String.valueOf(y).split("\\.")[1];
+        return doublePath;
     }
 
     private String convertFirstTwoElements(char c1, char c2) {
